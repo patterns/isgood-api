@@ -1,40 +1,59 @@
-openapi: 3.0.0
+openapi: "3.0.2"
 info:
-  title: isgood webAPI
-  description: The interface to DS for consumers like the isgood webApp
-  version: 0.0.1
-components:
-  schemas:
-    Indicator:
-      type: object
-      properties:
-          id:
-            type: integer
-          name:
-            type: string
+  title: "isgood webAPI"
+  description: "The interface to DS for consumers like the isgood webApp"
+  version: "0.1.1"
+  license: 
+    name: "GNU Affero General Public License v3.0"
+    url: "https://github.com/for-good/isgood-api/blob/main/LICENSE"
 
-paths:
-  /recommendations:
-    get:
-      summary: Get recommended indicators for a project according to criteria
-      parameters:
-        - in: query
-          name: criteria
-          schema:
-            type: string
-          required: true
-          description: The four project info text (comma-separated values) that will be searched for recommended indicators
+paths: 
+  /indicators:
+    post:
+      description: "Find recommended indicators based on criteria"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IndicatorsRequest"
       responses:
-        '200':
-          description: A JSON array of indicators
+        "200":
+          description: "List of numbers representing vector"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Indicator'
-        '400':
-          description: The specified criteria is not a string.
+                $ref: "#/components/schemas/IndicatorsResponse"
         default:
-          description: Unexpected error
+          description: "Unexpected error"
+
+components:
+  schemas:
+    IndicatorsRequest:
+      type: object
+      required:
+      - id
+      properties:
+          id:
+            type: string
+    Indicators:
+      type: object
+      properties:
+          word:
+            type: string
+          vector:
+            type: array
+            items:
+              type: integer
+    IndicatorsResponse:
+      type: object
+      properties:
+          data:
+            $ref: "#/components/schemas/Indicators"
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+security:
+  - bearerAuth: []
 
