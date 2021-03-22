@@ -70,6 +70,9 @@
       "IndicatorsResponse": {
         "type": "object",
         "properties": {
+          "success": {
+            "type": "boolean"
+          },
           "data": {
             "$ref": "#/components/schemas/Indicators"
           }

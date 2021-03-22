@@ -1,0 +1,15 @@
+
+[build]
+  command = "./build.sh"
+  functions = "functions"
+  publish = "public"
+
+[build.environment]
+  GO_IMPORT_PATH = "github.com/for-good/isgood-api/tests/echo"
+  GO111MODULE = "on"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/echo/:splat"
+  status = 200
+

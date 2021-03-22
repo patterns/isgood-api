@@ -4,13 +4,15 @@ This tool sends a POST request to exercise the OAS
   It uses the AWS Cognito Identity Provider SDK
   to obtain the Bearer Tokens for the `Authorization:` header.
 
-> [isgood API](https://github.com/for-good/isgood-api)
+The API can be created using the steps in the fake-httpapi project.
+Then the user sign-in steps must be done to register a test username/password.
 
 ## Quickstart
 ```console
 go run awsapi-post.go -client=YOUR_COGNITO_APP_CLIENTID \
                       -pool=YOUR_COGNITO_USER_POOLID \
                       -username=YOUR_COGNITO_USER \
+                      -password=YOUR_COGNITO_USER_PASSWORD \
                       -endpt=YOUR_AWS_API_ENDPOINT/indications
 
 ```
