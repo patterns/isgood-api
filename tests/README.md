@@ -6,6 +6,8 @@ To test the OAS, there are 3 services to spin-up
 2. AWS API Gateway (v1 using REST API, v2 using HTTP API)
 3. Netlify hosted echo endpoint acting as the HTTP integration (Lambda integration should be an IAM role and switching out the fully-qualified URL)
 
+![AWS API Gateway diagram](awsapigw.svg)
+
 ## Quickstart
 - First deploy the echo service to Netlify.
 - Deploy the API to AWS API Gateway and specify the Netlify URL as the HTTP integration
@@ -13,6 +15,9 @@ To test the OAS, there are 3 services to spin-up
 - Use the token to make the test POST request to the API
 
 ## Credits
+
+AWS API Gateway details
+ by [Alex DeBrie](https://www.alexdebrie.com/posts/api-gateway-elements/)
 
 v2 AWS SDK for 
  [Golang](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2)([LICENSE](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2?tab=licenses))
