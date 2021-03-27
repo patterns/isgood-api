@@ -1,7 +1,7 @@
 # echo
 Follow tutorial for hosting Golang on Netlify
 
-
+![Testing diagram](swimlanes.svg)
 
 ## Credits
 
