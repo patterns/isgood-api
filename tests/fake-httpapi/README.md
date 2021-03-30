@@ -8,6 +8,7 @@ Using Sander Knapes article as the guide, the configuration
  Create-Api quick create the most. It's equivalent to writing
  the AWS CLI calls into a BASH shell script.
 
+![Quick-create diagram](sequence.svg)
 
 ## Quickstart
 - Configure your AWS free tier (~/.aws files)
