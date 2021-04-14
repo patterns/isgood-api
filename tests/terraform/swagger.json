@@ -1,0 +1,72 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "exampleoas",
+    "version": "0.1.4"
+  },
+  "paths": {
+    "/lambda": {
+      "post": {
+        "x-amazon-apigateway-integration": {
+          "uri": "${indicationsuri}",
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        },
+        "responses": {
+          "default": {
+            "$ref": ""
+          }
+        }
+      }
+    },
+    "/echo": {
+      "get": {
+        "x-amazon-apigateway-integration": {
+          "uri": "${indicationsfqdn}",
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "connectionType": "INTERNET",
+          "httpMethod": "GET",
+          "type": "http_proxy"
+        },
+        "responses": {
+          "default": {
+            "$ref": ""
+          }
+        }
+      },
+      "post": {
+        "x-amazon-apigateway-integration": {
+          "uri": "${indicationsfqdn}",
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "connectionType": "INTERNET",
+          "httpMethod": "POST",
+          "type": "http_proxy"
+        },
+        "responses": {
+          "default": {
+            "$ref": ""
+          }
+        }
+      }
+
+    }
+  }
+
+}
