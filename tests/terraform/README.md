@@ -1,6 +1,7 @@
 # terraform
 Terraform to write the deployment as configuration code
 
+## Quickstart
 1. Sign up to AWS free tier
 2. Install [Terraform]()
 3. Deploy:
@@ -28,7 +29,7 @@ Chalice package format
  for [Terraform](https://aws.github.io/chalice/topics/tf.html)
 
 Advanced Terraform with OpenAPI
- by [Rolf Streefkerk](https://dev.to/rolfstreefkerk/openapi-with-terraform-on-aws-api-gateway-17je)((LICENSE)[https://github.com/rpstreef/openapi-tf-example/blob/master/LICENSE])
+ by [Rolf Streefkerk](https://dev.to/rolfstreefkerk/openapi-with-terraform-on-aws-api-gateway-17je)([LICENSE](https://github.com/rpstreef/openapi-tf-example/blob/master/LICENSE))
 
 Advanced Terraform
  by [AWS Samples](https://github.com/aws-samples/aws-ingesting-click-logs-using-terraform)([LICENSE](https://github.com/aws-samples/aws-ingesting-click-logs-using-terraform/blob/master/LICENSE))
