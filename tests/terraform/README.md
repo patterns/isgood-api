@@ -3,7 +3,7 @@ Terraform to write the deployment as configuration code
 
 ## Quickstart
 1. Sign up to AWS free tier
-2. Install [Terraform]()
+2. Install [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
 3. Deploy:
 ```
 terraform init
