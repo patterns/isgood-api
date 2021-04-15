@@ -1,5 +1,5 @@
 # terraform
-Terraform to write the deployment as configuration code
+Terraform to write the deployment as configuration steps
 
 ## Quickstart
 1. Sign up to AWS free tier
