@@ -1,21 +1,4 @@
 
-variable "indicationsfqdn" {
-  description = "FQDN target of HTTP endpoint integration"
-  default     = "https://docs.isgood.ai/"
-}
-
-output "baseURL" {
-  value = aws_api_gateway_deployment.example.invoke_url
-}
-
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
-}
-
 resource "aws_api_gateway_rest_api" "exampleapi" {
   name        = "exampleapi"
   description = "Example API"
@@ -24,9 +7,10 @@ resource "aws_api_gateway_rest_api" "exampleapi" {
     "REGIONAL"]
   }
 
-  body = templatefile("swagger.json", {
-    indicationsfqdn = "${var.indicationsfqdn}"
-    indicationsuri  = "${aws_lambda_function.examplefunc.invoke_arn}"
+  body = templatefile("${path.module}/swagger.json", {
+    echoUri = "${var.echo_uri}"
+    lambdaUri  = "${var.example_lambda_arn}"
+    userPoolArn     = "${var.user_pool_arn}"
   })
 }
 
@@ -42,7 +26,7 @@ resource "aws_api_gateway_deployment" "example" {
 resource "aws_lambda_permission" "exampleperm" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.examplefunc.function_name
+  function_name = "${var.example_lambda_name}"
   principal     = "apigateway.amazonaws.com"
 
   # The "/*/*" portion grants access from any method on any resource

@@ -1,46 +1,20 @@
-provider "aws" {
-  region = "us-east-1"
+terraform {
+  required_version = ">= 0.12"
 }
 
-variable "function_name" {
-  default = "minimal_lambda_function"
+variable "indicationsfqdn" {
+  description = "URL of echo test service"
 }
 
-variable "handler" {
-  default = "lambda.handler"
+module "cognito" {
+  source = "./modules/cognito"
 }
 
-variable "runtime" {
-  default = "python3.7"
-}
-
-resource "aws_lambda_function" "examplefunc" {
-  role             = aws_iam_role.examplerole.arn
-  handler          = var.handler
-  runtime          = var.runtime
-  filename         = "lambda.zip"
-  function_name    = var.function_name
-  source_code_hash = filebase64sha256("lambda.zip")
-}
-
-resource "aws_iam_role" "examplerole" {
-  name        = "examplerole"
-  path        = "/"
-  description = "Allows Lambda Function to call AWS services on your behalf."
-
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
+module "apigateway" {
+  source              = "./modules/apigateway"
+  echo_uri            = var.indicationsfqdn
+  user_pool_arn       = module.cognito.user_pool_arn
+  example_lambda_arn  = aws_lambda_function.examplefunc.invoke_arn
+  example_lambda_name = aws_lambda_function.examplefunc.function_name
 }
 
