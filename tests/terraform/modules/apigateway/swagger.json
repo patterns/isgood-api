@@ -2,13 +2,13 @@
   "openapi": "3.0.1",
   "info": {
     "title": "exampleoas",
-    "version": "0.1.4"
+    "version": "0.1.5"
   },
   "paths": {
     "/lambda": {
       "post": {
         "x-amazon-apigateway-integration": {
-          "uri": "${indicationsuri}",
+          "uri": "${lambdaUri}",
           "responses": {
             "default": {
               "statusCode": "200"
@@ -19,6 +19,11 @@
           "httpMethod": "POST",
           "type": "aws_proxy"
         },
+        "security": [
+          {
+              "ExampleRegisteredUsers": []
+          }
+        ],
         "responses": {
           "default": {
             "$ref": ""
@@ -29,7 +34,7 @@
     "/echo": {
       "get": {
         "x-amazon-apigateway-integration": {
-          "uri": "${indicationsfqdn}",
+          "uri": "${echoUri}",
           "responses": {
             "default": {
               "statusCode": "200"
@@ -48,7 +53,7 @@
       },
       "post": {
         "x-amazon-apigateway-integration": {
-          "uri": "${indicationsfqdn}",
+          "uri": "${echoUri}",
           "responses": {
             "default": {
               "statusCode": "200"
@@ -67,6 +72,22 @@
       }
 
     }
+  },
+  "components": {
+  "securitySchemes": {
+    "ExampleRegisteredUsers": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "x-amazon-apigateway-authtype": "cognito_user_pools",
+      "x-amazon-apigateway-authorizer": {
+        "type": "cognito_user_pools",
+        "providerARNs": [
+          "${userPoolArn}"
+        ]
+      }
+    }
+  }
   }
 
 }
