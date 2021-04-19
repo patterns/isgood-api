@@ -18,3 +18,17 @@ module "apigateway" {
   example_lambda_name = aws_lambda_function.examplefunc.function_name
 }
 
+data "external" "testuser" {
+  program = ["python3", "${path.module}/external/create-testuser.py"]
+
+  query = {
+    user-pool-id = module.cognito.user_pool_id
+  }
+}
+
+locals {
+  tester = data.external.testuser.result
+
+}
+
+

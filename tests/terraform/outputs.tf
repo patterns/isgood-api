@@ -11,3 +11,7 @@ output "userPoolClientID" {
   value = module.cognito.user_pool_client_id
 }
 
+output "tester" {
+  value = local.tester.Username
+}
+

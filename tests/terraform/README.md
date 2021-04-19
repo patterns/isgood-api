@@ -4,20 +4,26 @@ Terraform to write the deployment as configuration steps
 ## Quickstart
 1. Sign up to AWS free tier
 2. Install [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
-3. Deploy:
+3. Get Python AWS SDK for the create-testuser.py script:
+```
+python3 -m venv env37
+source env37/bin/activate
+pip install boto3
+```
+4. Deploy:
 ```
 AWS_REGION=us-west-2 terraform init
 AWS_REGION=us-west-2 terraform validate
 AWS_REGION=us-west-2 terraform apply -var="indicationsfqdn=https://www.isgood.ai/"
 ```
-4. Note the output value of baseURL
-5. Test:
+5. Note the output value of baseURL
+6. Test:
 ```
 curl -d '{"id": "test123"}' -H "Content-Type: application/json"  -X POST baseURL/echo
 curl -d '{"id": "test123"}' -H "Content-Type: application/json"  -X POST baseURL/lambda
 ```
 
-6. Exercise token auth (on /lambda route) see the
+7. Exercise token auth (on /lambda route) see the
  Sander Knape [guide](https://sanderknape.com/2020/08/amazon-cognito-jwts-authenticate-amazon-http-api/):
 ```
 aws cognito-idp sign-up .....
@@ -26,7 +32,7 @@ aws cognito-idp initiate-auth .....
 curl ..... -H "Authorization: ${TOKEN}" -X POST baseURL/lambda
 ```
 
-7. Teardown
+8. Teardown
 ```
 AWS_REGION=us-west-2 terraform destroy
 ```
