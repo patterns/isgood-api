@@ -1,11 +1,12 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 0.14"
 
   backend "remote" {
     organization = "savewhales"
     workspaces = {
       name = "gh-actions-demo"
     }
+  }
 }
 
 variable "indicationsfqdn" {
