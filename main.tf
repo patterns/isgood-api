@@ -1,6 +1,5 @@
 terraform {
   required_version = "~> 0.14"
-
   backend "remote" {
     organization = "savewhales"
     workspaces {
