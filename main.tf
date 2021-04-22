@@ -3,7 +3,7 @@ terraform {
 
   backend "remote" {
     organization = "savewhales"
-    workspaces = {
+    workspaces {
       name = "gh-actions-demo"
     }
   }
