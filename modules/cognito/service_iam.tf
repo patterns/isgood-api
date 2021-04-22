@@ -14,7 +14,7 @@ resource "aws_iam_user" "cognito_app_user" {
 # so we manually create access/secret keys via the console
 
 resource "aws_iam_user_group_membership" "cognito_app_user_groups" {
-  user = "${aws_iam_user.cognito_app_user.name}"
+  user = aws_iam_user.cognito_app_user.name
 
   groups = [
     "${aws_iam_group.cognito_app_group.name}",
@@ -70,10 +70,10 @@ data "aws_iam_policy_document" "cognito_app_group_policy" {
 
 resource "aws_iam_policy" "cognito_app_group_policy" {
   name   = "${var.name}_group_policy"
-  policy = "${data.aws_iam_policy_document.cognito_app_group_policy.json}"
+  policy = data.aws_iam_policy_document.cognito_app_group_policy.json
 }
 
 resource "aws_iam_group_policy_attachment" "cognito_app_group_attachment" {
-  group      = "${aws_iam_group.cognito_app_group.name}"
-  policy_arn = "${aws_iam_policy.cognito_app_group_policy.arn}"
+  group      = aws_iam_group.cognito_app_group.name
+  policy_arn = aws_iam_policy.cognito_app_group_policy.arn
 }

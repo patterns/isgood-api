@@ -2,7 +2,7 @@
 resource "aws_cognito_user_pool" "pool" {
   name = "${var.name}_user_pool"
 
-  auto_verified_attributes = ["email" ]
+  auto_verified_attributes = ["email"]
 
   admin_create_user_config {
     allow_admin_create_user_only = false
@@ -14,7 +14,7 @@ resource "aws_cognito_user_pool_client" "pool_client" {
   name                   = "${var.name}_user_pool_client"
   generate_secret        = false
   refresh_token_validity = 30
-  explicit_auth_flows    = [
+  explicit_auth_flows = [
     "ALLOW_ADMIN_USER_PASSWORD_AUTH",
     "ALLOW_CUSTOM_AUTH",
     "ALLOW_USER_PASSWORD_AUTH",
@@ -22,10 +22,10 @@ resource "aws_cognito_user_pool_client" "pool_client" {
     "ALLOW_REFRESH_TOKEN_AUTH",
   ]
 
-  read_attributes  = ["email" ]
-  write_attributes = ["email" ]
+  read_attributes  = ["email"]
+  write_attributes = ["email"]
 
-  supported_identity_providers = ["COGNITO" ]
+  supported_identity_providers = ["COGNITO"]
 }
 
 resource "aws_cognito_identity_pool" "apps_identity_pool" {
@@ -38,7 +38,7 @@ resource "aws_cognito_identity_pool" "apps_identity_pool" {
     server_side_token_check = false
   }
 
-  depends_on = [ aws_cognito_user_pool.pool ]
+  depends_on = [aws_cognito_user_pool.pool]
 }
 
 resource "aws_iam_role" "apps_identity_pool_authenticated" {
@@ -96,7 +96,7 @@ EOF
 resource "aws_cognito_identity_pool_roles_attachment" "apps_identity_pool_role_attachment" {
   identity_pool_id = aws_cognito_identity_pool.apps_identity_pool.id
   roles = {
-    "authenticated"   = aws_iam_role.apps_identity_pool_authenticated.arn
+    "authenticated" = aws_iam_role.apps_identity_pool_authenticated.arn
   }
 }
 
