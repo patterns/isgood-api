@@ -29,29 +29,54 @@ components:
     IndicatorsRequest:
       type: object
       required:
-        - id
+        - projectId
+        - name
+        - description
+        - projectImpacts
+        - outcomesDesired
       properties:
-        id:
+        projectId:
           type: string
+        name:
+          type: string
+        description:
+          type: string
+        projectImpacts:
+          type: array
+          items:
+            type: string
+        outcomesDesired:
+          type: array
+          items:
+            type: string
     Indicators:
       type: object
       properties:
-        word:
+        projectId:
           type: string
-        vector:
+        indicators:
           type: array
           items:
-            type: integer
+            type: object
+            properties:
+              indicatorID:
+                type: number
+              alignedStrength:
+                type: number
     IndicatorsResponse:
       type: object
       properties:
-        success:
-          type: boolean
         data:
           $ref: '#/components/schemas/Indicators'
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
+    isgoodUserPool:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: cognito_user_pools
+      x-amazon-apigateway-authorizer:
+        type: cognito_user_pools
+        providerARNs:
+          - arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}
 security:
-  - bearerAuth: []
+  - isgoodUserPool: []
