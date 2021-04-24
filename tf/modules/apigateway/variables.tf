@@ -7,3 +7,4 @@ variable "echo_uri" {
 variable "user_pool_arn" {}
 variable "example_lambda_arn" {}
 variable "example_lambda_name" {}
+variable "stage_name" {}

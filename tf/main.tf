@@ -8,11 +8,6 @@ terraform {
   }
 }
 
-variable "indicationsfqdn" {
-  description = "URL of echo test service"
-  default     = "https://www.isgood.ai/"
-}
-
 module "cognito" {
   source = "./modules/cognito"
 }
@@ -23,5 +18,6 @@ module "apigateway" {
   user_pool_arn       = module.cognito.user_pool_arn
   example_lambda_arn  = aws_lambda_function.examplefunc.invoke_arn
   example_lambda_name = aws_lambda_function.examplefunc.function_name
+  stage_name = var.stagename
 }
 
