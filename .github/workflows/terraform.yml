@@ -10,8 +10,8 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    env:
-      TF_WORKSPACE: ${{ secrets.TF_WORKSPACE }}
+    ##env:
+    ##  TF_WORKSPACE: ${{ secrets.TF_WORKSPACE }}
     defaults:
       run:
         working-directory: tf
@@ -32,6 +32,10 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+        env:
+          TF_WORKSPACE: gh-actions-demo
+      ##with:
+      ##    args: '-backend-config="workspace=${{ secrets.TF_WORKSPACE }}"'
 
       - name: Terraform Plan
         id: plan
