@@ -20,7 +20,7 @@ resource "aws_api_gateway_deployment" "example" {
   ]
 
   rest_api_id = aws_api_gateway_rest_api.exampleapi.id
-  stage_name  = "${var.stage_name}"
+  stage_name  = var.stage_name
 }
 
 resource "aws_lambda_permission" "exampleperm" {
