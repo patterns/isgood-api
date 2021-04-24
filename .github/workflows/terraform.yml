@@ -10,9 +10,12 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
+    env:
+      TF_WORKSPACE: ${{ secrets.TF_WORKSPACE }}
     defaults:
       run:
         working-directory: tf
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
