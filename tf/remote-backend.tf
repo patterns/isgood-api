@@ -1,4 +1,3 @@
-
 terraform {
   backend "remote" {
     organization = "saveclimate"
