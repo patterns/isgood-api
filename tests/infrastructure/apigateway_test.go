@@ -1,16 +1,18 @@
 package test
 
 import (
+	"fmt"
 	"testing"
+	"time"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
+	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
 )
 
 func TestApiGateway(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../../tf",
-		Vars: map[string]string {
+		Vars: map[string]interface{} {
 			indicationsfqdn: "https://mystifying-swirles-66e451.netlify.app/api/echo",
 		},
 	})
