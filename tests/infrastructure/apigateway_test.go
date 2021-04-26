@@ -1,7 +1,8 @@
 package test
 
 import (
-	"fmt"
+	"crypto/tls"
+	//"fmt"
 	"testing"
 	"time"
 
@@ -19,10 +20,14 @@ func TestApiGateway(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	base := terraform.Output(t, terraformOptions, "baseURL")
+	url := terraform.Output(t, terraformOptions, "baseURL")
 
+	expect := "unauthorized"
+	retry := 30
+	sleep := 5*time.Second
+	tlsconf := tls.Config{}
 	// Make an HTTP request to the instance and make sure we get back a 200 OK with the body "Hello, World!"
-	url := fmt.Sprintf("%s/lambda", base)
-	http_helper.HttpGetWithRetry(t, url, nil, 200, "unauthorized", 30, 5*time.Second)
+	////url := fmt.Sprintf("%s/lambda", base)
+	http_helper.HttpGetWithRetry(t, url, &tlsconf, 200, expect, retry, sleep)
 }
 
