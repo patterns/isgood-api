@@ -80,11 +80,11 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       - name: Go dependencies
-        working-directory: ./tests/infrastructure/
-        run: go mod init github.com/patterns/hello-terratest
+        working-directory: tests/infrastructure
+        run: go mod init github.com/patterns/isgood-api
 
       - name: Run Terratest
-        working-directory: ./tests/infrastructure/
+        working-directory: tests/infrastructure
         ##        env:
                 ##          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
         run: go test -v -count=1 -timeout 30m
