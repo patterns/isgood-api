@@ -87,9 +87,9 @@ jobs:
         working-directory: ./tests/infrastructure/
         ##        env:
                 ##          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-        run: |
+        run: go test -v -count=1 -timeout 30m
                 ##          echo "credentials \"app.terraform.io\" { token = \"$TF_API_TOKEN\" }" > ~/.terraformrc
-          go test -v -count=1 -timeout 30m
+                ##          go test -v -count=1 -timeout 30m
 
 
 
