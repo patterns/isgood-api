@@ -12,9 +12,6 @@ import (
 func TestApiGateway(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../../tf",
-		Vars: map[string]interface{} {
-			"indicationsfqdn": "https://mystifying-swirles-66e451.netlify.app/api/echo",
-		},
 	})
 
 	// Clean up resources with "terraform destroy" at the end of the test.
