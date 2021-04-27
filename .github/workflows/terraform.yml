@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
+        shell: bash
         working-directory: tf
     steps:
       - name: Checkout
@@ -67,16 +68,15 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: Terraform Output
-        id: base_url
+        id: base-url
         run: |
-            APIURL="$(terraform output -json baseURL)"
-            ##            echo "testurl=${APIURL}" >> $GITHUB_ENV
-            echo "::set-output name=testurl::$APIURL" 
+            APIGW="$(terraform output -json baseURL)"
+            echo "::set-output name=URL_STR::${APIGW}" 
 
       - name: Test URL
-        id: test_url
+        id: test-url
         run: |
-            echo "DEBUG ${{ steps.base_url.outputs.testurl }}"
+            echo "DEBUG ${{ steps.base-url.outputs.URL_STR }}"
 
 
 
