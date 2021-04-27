@@ -11,7 +11,8 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     outputs:
-      apigw: ${{ steps.base-url.outputs.URL_STR }}
+      apigw: ${{ steps.apply.outputs.baseURL }}
+      stdout: ${{ steps.apply.outputs.stdout }}
     defaults:
       run:
         shell: bash
@@ -65,21 +66,23 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
+        id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
 
-      - name: Terraform Output
-        id: base-url
-        run: |
-            echo "::set-output name=URL_STR::$(terraform output -json baseURL)"
-            ##APIGW="$(terraform output -json baseURL)"
-            ##echo "::set-output name=URL_STR::${APIGW}" 
+
+
+
+
+
 
   infratest:
     name: "Infra Test"
     runs-on: ubuntu-latest
     needs: terraform
     steps:
+      - name: Check output
+        run: echo ${{ needs.terraform.outputs.stdout }}
       - name: Check URL
         run: echo ${{ needs.terraform.outputs.apigw }}
 
