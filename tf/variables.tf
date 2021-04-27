@@ -1,4 +1,3 @@
-
 variable "indicationsfqdn" {
   description = "URL of echo test service"
   default     = "https://www.isgood.ai/"

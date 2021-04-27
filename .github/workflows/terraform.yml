@@ -71,10 +71,6 @@ jobs:
 
 
 
-
-
-
-
   infratest:
     name: "Infra Test"
     runs-on: ubuntu-latest
