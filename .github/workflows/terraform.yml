@@ -9,8 +9,9 @@ on:
 jobs:
   terraform:
     name: "Terraform"
-
     runs-on: ubuntu-latest
+    outputs:
+      apigw: ${{ steps.base-url.outputs.URL_STR }}
     defaults:
       run:
         shell: bash
@@ -74,10 +75,13 @@ jobs:
             ##APIGW="$(terraform output -json baseURL)"
             ##echo "::set-output name=URL_STR::${APIGW}" 
 
-      - name: Test URL
-        id: test-url
-        run: |
-            echo "DEBUG ${{ steps.base-url.outputs.URL_STR }}"
+  infratest:
+    name: "Infra Test"
+    runs-on: ubuntu-latest
+    needs: terraform
+    steps:
+      - name: Check URL
+        run: echo ${{ needs.terraform.outputs.apigw }}
 
 
 
