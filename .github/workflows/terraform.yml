@@ -11,8 +11,8 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     outputs:
-      apigw: ${{ steps.plan.outputs.baseURL }}
-      stdout: ${{ steps.plan.outputs.stdut }}
+      apigw: ${{ steps.apply.outputs.baseURL }}
+      stdout: ${{ steps.apply.outputs.stdut }}
     defaults:
       run:
         shell: bash
@@ -66,6 +66,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
+        id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
 
