@@ -69,12 +69,14 @@ jobs:
       - name: Terraform Output
         id: base_url
         run: |
-            APIURL="$(terraform output -raw baseURL)"
+            APIURL='$(terraform output -json baseURL)'
             ##            echo "testurl=${APIURL}" >> $GITHUB_ENV
-            echo "::set-output name=testurl::$APIURL" 
+            echo ::set-output name=testjson::$APIURL 
 
       - name: Test URL
         id: test_url
         run: |
-            echo "DEBUG baseURL ${{ steps.base_url.outputs.testurl }}"
+            echo $test_var
+        env:
+            test_var: ${{ steps.base_url.outputs.testjson }}
 
