@@ -70,8 +70,9 @@ jobs:
       - name: Terraform Output
         id: base-url
         run: |
-            APIGW="$(terraform output -json baseURL)"
-            echo "::set-output name=URL_STR::${APIGW}" 
+            echo "::set-output name=URL_STR::$(terraform output -json baseURL)"
+            ##APIGW="$(terraform output -json baseURL)"
+            ##echo "::set-output name=URL_STR::${APIGW}" 
 
       - name: Test URL
         id: test-url
