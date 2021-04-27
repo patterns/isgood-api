@@ -81,7 +81,7 @@ jobs:
     needs: terraform
     steps:
       - name: Check output
-        run:  ${{ needs.terraform.outputs.stdout }} | sed -n '/baseURL = "\([^"]*\)"/p'
+        run: echo ${{ needs.terraform.outputs.stdout }} | sed -n '/baseURL = "\([^"]*\)"/p'
       - name: Check URL
         run: echo ${{ needs.terraform.outputs.apigw }}
 
