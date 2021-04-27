@@ -66,3 +66,11 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
 
+      - name: Obtain Terraform Output
+        run: |
+            echo "base_url=${terraform output -raw baseURL}" >> $GITHUB_ENV
+
+      - name: Test URL
+        run: |
+            echo "DEBUG baseURL ${{ env.base_url }}"
+
