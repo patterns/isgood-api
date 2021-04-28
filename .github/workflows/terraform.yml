@@ -74,7 +74,7 @@ jobs:
         with:
           script: |
             const str = `${process.env.APPLIED}`;
-            const re = new RegExp('baseURL = "([^"]*)"', 'm');
+            const re = new RegExp('baseURL = (.*)');
             arr = re.exec(str);
             return "DEBUGDEBUG";
           result-encoding: string
