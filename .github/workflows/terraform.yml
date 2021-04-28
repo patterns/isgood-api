@@ -77,7 +77,7 @@ jobs:
             const re = new RegExp('baseURL = "([^"]*)"', 'm');
             arr = re.exec(str);
             if arr !== null {
-               return arr[1];
+               return "DEBUG-URL-GOES-HERE";
             }
             return "DEBUGDEBUG";
           result-encoding: string
