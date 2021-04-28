@@ -11,7 +11,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     outputs:
-      apigw: ${{ steps.base-url.outputs.APIGW_URL }}
+      apigw: ${{ steps.base-url.outputs.result }}
 
     defaults:
       run:
@@ -72,9 +72,18 @@ jobs:
 
       - name: Terraform Output
         id: base-url
-        run: |
-            TEST_STR=$(echo ${{ steps.apply.outputs.stdout }} | sed -n '/baseURL = "\([^"]*\)"/p')
-            echo "::set-output name=APIGW_URL::$TEST_STR"
+        uses: actions/github-script@v4
+        env:
+          APPLIED: ${{ steps.apply.outputs.stdout }}
+        with:
+          script: |
+            const re = new RegExp('baseURL = "([^"]*)"');
+            arr = re.exec(${process.env.APPLIED});
+            if arr !== null {
+                    return arr[1];
+            }
+            return "DEBUGDEBUG"
+          result-encoding: string
 
   infratest:
     name: "Infra Test"
