@@ -73,6 +73,7 @@ jobs:
           APPLIED: ${{ steps.plan.outputs.stdout }}
         with:
           script: |
+            const re = new RegExp('baseURL = "([^"]*)"', 'm');
             return "DEBUGDEBUG"
           result-encoding: string
       - name: Terraform Apply
