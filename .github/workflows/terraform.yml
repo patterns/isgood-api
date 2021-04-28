@@ -65,25 +65,20 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
-        id: apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
 
       - name: Terraform Output
         id: base-url
         uses: actions/github-script@v4
         env:
-          APPLIED: ${{ steps.apply.outputs.stdout }}
+          APPLIED: ${{ steps.plan.outputs.stdout }}
         with:
           script: |
-            const re = new RegExp('baseURL = "([^"]*)"');
-            arr = re.exec(${process.env.APPLIED});
-            if arr !== null {
-                    return arr[1];
-            }
             return "DEBUGDEBUG"
           result-encoding: string
+      - name: Terraform Apply
+        id: apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
 
   infratest:
     name: "Infra Test"
