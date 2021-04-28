@@ -76,9 +76,6 @@ jobs:
             const str = `${process.env.APPLIED}`;
             const re = new RegExp('baseURL = "([^"]*)"', 'm');
             arr = re.exec(str);
-            if arr !== null {
-               return "DEBUG-URL-GOES-HERE";
-            }
             return "DEBUGDEBUG";
           result-encoding: string
       - name: Terraform Apply
