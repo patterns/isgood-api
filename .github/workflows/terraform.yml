@@ -11,7 +11,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     outputs:
-      apigw: ${{ steps.base-url.outputs.result }}
+      apigw: ${{ steps.base-url.outputs.GW_URL }}
 
     defaults:
       run:
@@ -40,7 +40,7 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: true
 
-      - uses: actions/github-script@0.9.0
+      - uses: actions/github-script@v4
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -65,26 +65,14 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-
-      - name: Terraform Output
-        id: base-url
-        uses: actions/github-script@v4
-        env:
-          APPLIED: ${{ steps.plan.outputs.stdout }}
-        with:
-          script: |
-            const str = `${process.env.APPLIED}`;
-            const re = new RegExp('baseURL = (.*)');
-            arr = re.exec(str);
-            if arr !== null {
-                    return "URLGOESHERE";
-            }
-            return "DEBUGDEBUG";
-          result-encoding: string
       - name: Terraform Apply
-        id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
+      - name: Terraform Out
+        id: base-url
+        run: |
+                ##testabc=$(terraform output -json baseURL)
+            echo "::set-output name=GW_URL::testabc"
 
   infratest:
     name: "Infra Test"
