@@ -72,8 +72,8 @@ jobs:
       - name: Terraform Output
         id: base-url
         run: |
-            DEBUGTFOUT=$(terraform output -json baseURL)
-            echo "::set-output name=API_GTWY::${DEBUGTFOUT}"
+            DEBUGTFOUT=`terraform output -json baseURL`
+            echo "::set-output name=API_GTWY::$DEBUGTFOUT"
 
   infratest:
     name: "Infra Test"
