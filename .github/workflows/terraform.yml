@@ -11,7 +11,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     outputs:
-      apigw: ${{ steps.base-url.outputs.API_GTWY }}
+      apigw: ${{ steps.base-url.outputs.stdout }}
 
     defaults:
       run:
@@ -72,8 +72,8 @@ jobs:
       - name: Terraform Output
         id: base-url
         run: |
-            DEBUGTFOUT=`terraform output -json baseURL`
-            echo "::set-output name=API_GTWY::$DEBUGTFOUT"
+            `terraform output -json baseURL`
+
 
   infratest:
     name: "Infra Test"
