@@ -72,7 +72,7 @@ jobs:
       - name: Terraform Output
         id: base-url
         run: |
-            URL_DEBUG = $(terraform output -json baseURL)
+            DEBUGTFOUT=$(terraform output -json baseURL)
             echo "::set-output name=API_GTWY::testabc"
 
   infratest:
