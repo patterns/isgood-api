@@ -71,7 +71,6 @@ jobs:
       - name: Terraform Out
         id: base-url
         run: |
-                ##testabc=$(terraform output -json baseURL)
             echo "::set-output name=GW_URL::testabc"
 
   infratest:
