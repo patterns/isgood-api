@@ -11,7 +11,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     outputs:
-      apigw: ${{ steps.base-url.outputs.GW_URL }}
+      apigw: ${{ steps.base-url.outputs.API_GTWY }}
 
     defaults:
       run:
@@ -68,10 +68,12 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
-      - name: Terraform Out
+
+      - name: Terraform Output
         id: base-url
         run: |
-            echo "::set-output name=GW_URL::testabc"
+            URL_DEBUG = $(terraform output -json baseURL)
+            echo "::set-output name=API_GTWY::testabc"
 
   infratest:
     name: "Infra Test"
