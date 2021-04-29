@@ -92,7 +92,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
+          pip install pytest requests
       - name: Test with pytest
         run: |
           pytest ping-test.py --base ${{ needs.terraform.outputs.apigw }}
