@@ -150,7 +150,7 @@ func readArgs() *bag {
 	passwd := flag.String("password", "Passw0rd!", "Cognito user password")
 	endpt := flag.String("endpt", "", "AWS API Gateway endpoint for testing")
 	mime := flag.String("mime", "json", "MIME type toggles (Content-Type header)")
-	payload := flag.String("payload", `{"id": "projid1234"}`, "Request body (JSON or form fields)")
+	payload := flag.String("payload", `{"projectId": "projid1234"}`, "Request body (JSON or form fields)")
 	flag.Parse()
 
 	if *poolId == "" || *clientId == "" {

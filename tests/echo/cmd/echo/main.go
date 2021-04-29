@@ -10,15 +10,19 @@ import (
 )
 
 type rtype struct {
-	Success bool  `json:"success"`
-	Data    dtype `json:"data"`
+	ProjectId  string  `json:"projectId"`
+	Indicators []dtype `json:"indicators"`
 }
 type dtype struct {
-	Word   string `json:"word"`
-	Vector []int  `json:"vector"`
+	IndicatorId     int  `json:"indicatorId"`
+	AlignedStrength float32 `json:"alignedStrength"`
 }
 type qtype struct {
-	Id string `json:"id"`
+	ProjectId string `json:"projectId"`
+	//Name string `json:"name"`
+	//Description string `json:"description"`
+	//ProjectImacts []string `json:"projectImpacts"`
+	//DesiredOutcomes []string `json:"desiredOutcomes"`
 }
 
 func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
@@ -26,15 +30,23 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 	if err != nil {
 		return &events.APIGatewayProxyResponse{
 			StatusCode: 400,
-			Body:       "JSON is missing the 'id' property",
+			Body:       "JSON is missing the 'projectId' property",
 		}, nil
 	}
 
-	// make arbitrary JSON for answer, atm
+	var data []dtype
+	// make arbitrary JSON for answer, to echo back
 	rand.Seed(time.Now().Unix())
-	nums := rand.Perm(4)
-	data := dtype{Word: word, Vector: nums}
-	payload := rtype{Success: true, Data: data}
+	permutations := rand.Perm(4)
+
+	for _, pk := range permutations {
+		item := dtype{
+			IndicatorId:     pk + 1,
+			AlignedStrength: rand.Float32(),
+		}
+		data = append(data, item)
+	}
+	payload := rtype{ProjectId: word, Indicators: data}
 	answer, _ := json.Marshal(payload)
 
 	headers := map[string]string{
@@ -42,9 +54,8 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 		"Cache-Control": "public, max-age=300",
 	}
 	return &events.APIGatewayProxyResponse{
-		StatusCode: 200,
-		Headers:    headers,
-		////MultiValueHeaders: http.Header{"Set-Cookie": {"Ding", "Ping"}},
+		StatusCode:      200,
+		Headers:         headers,
 		Body:            string(answer),
 		IsBase64Encoded: false,
 	}, nil
@@ -64,5 +75,5 @@ func extractField(body string) (word string, err error) {
 	if err != nil {
 		return
 	}
-	return qry.Id, nil
+	return qry.ProjectId, nil
 }

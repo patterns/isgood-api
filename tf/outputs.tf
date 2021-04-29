@@ -1,4 +1,3 @@
-
 output "baseURL" {
   value = module.apigateway.base_url
 }
