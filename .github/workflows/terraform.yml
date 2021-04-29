@@ -82,8 +82,8 @@ jobs:
       run:
         working-directory: tests/infrastructure
     steps:
-      - name: Check URL
-        run: echo ${{ needs.terraform.outputs.apigw }}
+
+
       - uses: actions/checkout@v2
       - name: Setup Python
         uses: actions/setup-python@v2
