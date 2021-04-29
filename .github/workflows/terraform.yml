@@ -95,5 +95,5 @@ jobs:
           pip install pytest
       - name: Test with pytest
         run: |
-          pytest --base ${{ needs.terraform.outputs.apigw }}
+          pytest ping-test.py --base ${{ needs.terraform.outputs.apigw }}
 
