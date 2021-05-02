@@ -3,7 +3,7 @@ terraform {
 }
 
 module "cognito" {
-  source     = "./modules/cognito"
+  source = "./modules/cognito"
 
 }
 

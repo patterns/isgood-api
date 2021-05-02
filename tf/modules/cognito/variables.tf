@@ -18,9 +18,9 @@ locals {
   lblidpool      = "demo_identity_pool"
   lblidpoolauth  = "demo_identitypool_authenticated"
   lblidpoolauthp = "demo_identitypool_authenticated_policy"
-  lblgr      = "demo_group"
+  lblgr          = "demo_group"
   lblgrpoli      = "demo_group_policy"
-  lblus      = "demo_user"
+  lblus          = "demo_user"
 }
 
 
