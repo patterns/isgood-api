@@ -1,10 +1,10 @@
 
 resource "aws_iam_group" "cognito_app_group" {
-  name = "${var.svc_prefix}_group"
+  name = local.grname
 }
 
 resource "aws_iam_user" "cognito_app_user" {
-  name = "${var.svc_prefix}_user"
+  name = local.usname
 }
 
 # note:
@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "cognito_app_group_policy" {
 }
 
 resource "aws_iam_policy" "cognito_app_group_policy" {
-  name   = "${var.svc_prefix}_group_policy"
+  name   = local.grpoli
   policy = data.aws_iam_policy_document.cognito_app_group_policy.json
 }
 
