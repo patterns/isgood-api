@@ -4,7 +4,7 @@ terraform {
     organization = "saveclimate"
 
     workspaces {
-      name = "demo"
+      name = "vault-demo"
     }
   }
 }
