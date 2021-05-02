@@ -1,5 +1,5 @@
 
-variable "svc_prefix" {}
+variable "svc_prefix" { default = "apigtwy" }
 
 locals {
   uspool      = format("%s_user_pool", var.svc_prefix)
