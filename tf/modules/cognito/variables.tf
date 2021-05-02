@@ -1,6 +1,6 @@
 
-variable "svc_prefix" { default = "apigtwy" }
-
+/*
+variable "svc_prefix" { type = string }
 locals {
   uspool      = format("%s_user_pool", var.svc_prefix)
   uspoolc     = format("%s_user_pool_client", var.svc_prefix)
@@ -11,4 +11,16 @@ locals {
   grpoli      = format("%s_group_policy", var.svc_prefix)
   usname      = format("%s_user", var.svc_prefix)
 }
+*/
+locals {
+  lbluspool      = "demo_user_pool"
+  lbluspoolc     = "demo_user_pool_client"
+  lblidpool      = "demo_identity_pool"
+  lblidpoolauth  = "demo_identitypool_authenticated"
+  lblidpoolauthp = "demo_identitypool_authenticated_policy"
+  lblgr      = "demo_group"
+  lblgrpoli      = "demo_group_policy"
+  lblus      = "demo_user"
+}
+
 
