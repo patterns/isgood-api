@@ -1,5 +1,6 @@
 
 variable "name" {
-  default = "your_service_name"
+
+  description = "The text prefixed to service resource names"
 }
 

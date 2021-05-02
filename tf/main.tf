@@ -4,6 +4,7 @@ terraform {
 
 module "cognito" {
   source = "./modules/cognito"
+  name          = var.svcprefix
 }
 
 module "apigateway" {
