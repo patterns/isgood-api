@@ -1,10 +1,10 @@
 
 resource "aws_iam_group" "cognito_app_group" {
-  name = local.lblgr
+  name = "${var.name}_group"
 }
 
 resource "aws_iam_user" "cognito_app_user" {
-  name = local.lblus
+  name = "${var.name}_user"
 }
 
 # note:
@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "cognito_app_group_policy" {
 }
 
 resource "aws_iam_policy" "cognito_app_group_policy" {
-  name   = local.lblgrpoli
+  name   = "${var.name}_group_policy"
   policy = data.aws_iam_policy_document.cognito_app_group_policy.json
 }
 

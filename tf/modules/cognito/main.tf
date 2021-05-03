@@ -1,6 +1,6 @@
 
 resource "aws_cognito_user_pool" "pool" {
-  name = local.lbluspool
+  name = "${var.name}_user_pool"
 
   auto_verified_attributes = ["email"]
 
@@ -11,7 +11,7 @@ resource "aws_cognito_user_pool" "pool" {
 
 resource "aws_cognito_user_pool_client" "pool_client" {
   user_pool_id           = aws_cognito_user_pool.pool.id
-  name                   = local.lbluspoolc
+  name                   = "${var.name}_user_pool_client"
   generate_secret        = false
   refresh_token_validity = 30
   explicit_auth_flows = [
@@ -29,7 +29,7 @@ resource "aws_cognito_user_pool_client" "pool_client" {
 }
 
 resource "aws_cognito_identity_pool" "apps_identity_pool" {
-  identity_pool_name               = local.lblidpool
+  identity_pool_name               = "${var.name}_identity_pool"
   allow_unauthenticated_identities = false
 
   cognito_identity_providers {
@@ -42,7 +42,7 @@ resource "aws_cognito_identity_pool" "apps_identity_pool" {
 }
 
 resource "aws_iam_role" "apps_identity_pool_authenticated" {
-  name = local.lblidpoolauth
+  name = "${var.name}_identitypool_authenticated"
 
   assume_role_policy = <<EOF
 {
@@ -69,7 +69,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "apps_identity_pool_authenticated" {
-  name = local.lblidpoolauthp
+  name = "${var.name}_identitypool_authenticated_policy"
   role = aws_iam_role.apps_identity_pool_authenticated.id
 
   policy = <<EOF
