@@ -33,12 +33,28 @@
           "type": "http_proxy"
         }
       }
+      },
 
-
+    "/lambda": {
+      "post": {
+        "security": [
+          {
+            "ExampleRegisteredUsers": []
+          }
+        ],
+        "x-amazon-apigateway-integration": {
+          "uri": ${lambdaUri},
+          "httpMethod": "POST",
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "type": "aws_proxy"
+        }
       }
-
     }
-
   },
 
   "components": {
