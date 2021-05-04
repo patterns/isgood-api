@@ -3,9 +3,8 @@
   "info": {
     "title": "exampleapi",
     "description": "Example API",
-    "version": "0.1.8"
+    "version": "0.1.7"
   },
-
 
   "paths": {
     "/echo": {
@@ -20,8 +19,7 @@
           },
           "passthroughBehavior": "when_no_match",
           "type": "http_proxy"
-        }
-      },
+        },
       "post": {
         "x-amazon-apigateway-integration": {
           "uri": ${echoUri},
@@ -35,42 +33,13 @@
           "type": "http_proxy"
         }
       }
-    },
-    "/lambda": {
-      "post": {
-        "security": [
-          {
-            "ExampleRegisteredUsers": []
-          }
-        ],
-        "x-amazon-apigateway-integration": {
-          "uri": ${lambdaUri},
-          "httpMethod": "POST",
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "passthroughBehavior": "when_no_match",
-          "type": "aws_proxy"
-        }
+
+
       }
+
     }
-  },
-  "components": {
-    "securitySchemes": {
-      "ExampleRegisteredUsers": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header",
-        "x-amazon-apigateway-authtype": "cognito_user_pools",
-        "x-amazon-apigateway-authorizer": {
-          "providerARNs": [
-            ${userPoolArn}
-          ],
-          "type": "cognito_user_pools"
-        }
-      }
-    }
+
+ 
+  
   }
 }
