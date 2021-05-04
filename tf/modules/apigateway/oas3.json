@@ -39,7 +39,7 @@
       "post": {
 
         "x-amazon-apigateway-integration": {
-          "uri": "${lambdaUri}",
+          "uri": ${jsonencode(lambdaUri)},
           "httpMethod": "POST",
           "responses": {
             "default": {
