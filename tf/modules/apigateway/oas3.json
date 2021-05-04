@@ -10,7 +10,7 @@
     "/echo": {
       "get": {
         "x-amazon-apigateway-integration": {
-          "uri": "https://mystifying-swirles-66e451.netlify.app/api/echo",
+          "uri": "${echoUri}",
           "httpMethod": "GET",
           "responses": {
             "default": {
