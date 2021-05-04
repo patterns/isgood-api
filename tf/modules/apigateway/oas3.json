@@ -10,7 +10,7 @@
     "/echo": {
       "get": {
         "x-amazon-apigateway-integration": {
-          "uri": "${echoUri}",
+          "uri": ${echoUri},
           "httpMethod": "GET",
           "responses": {
             "default": {
