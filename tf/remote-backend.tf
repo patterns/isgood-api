@@ -1,9 +1,9 @@
+
 terraform {
   backend "remote" {
-    organization = "saveclimate"
-
+    organization = "isgood-infra"
     workspaces {
-      name = "vault-demo"
+      name = "ghactions-demo"
     }
   }
 }

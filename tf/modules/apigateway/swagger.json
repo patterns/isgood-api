@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "exampleoas",
-    "version": "0.1.5"
+    "version": "0.1.6"
   },
   "paths": {
     "/lambda": {
@@ -25,8 +25,8 @@
           }
         ],
         "responses": {
-          "default": {
-            "$ref": ""
+          "200": {
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ExampleModel" } } }
           }
         }
       }
@@ -46,9 +46,9 @@
           "type": "http_proxy"
         },
         "responses": {
-          "default": {
-            "$ref": ""
-          }
+          "200": {
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ExampleModel" } } }
+
         }
       },
       "post": {
@@ -65,15 +65,31 @@
           "type": "http_proxy"
         },
         "responses": {
-          "default": {
-            "$ref": ""
-          }
+          "200": {
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ExampleModel" } } }
+
         }
       }
 
     }
   },
   "components": {
+ 
+    "schemas": {
+      "ExampleModel": {
+        "type": "object",
+        "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "message": {
+              "type": "string"
+            }
+        }
+    }
+  },
+
   "securitySchemes": {
     "ExampleRegisteredUsers": {
       "type": "apiKey",

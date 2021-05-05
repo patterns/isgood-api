@@ -7,10 +7,10 @@ resource "aws_api_gateway_rest_api" "exampleapi" {
     "REGIONAL"]
   }
 
-  body = templatefile("${path.module}/swagger.json", {
-    echoUri     = "${var.echo_uri}"
-    lambdaUri   = "${var.example_lambda_arn}"
-    userPoolArn = "${var.user_pool_arn}"
+  body = templatefile("${path.module}/oas3.json", {
+    echoUri     = var.echo_uri
+    lambdaUri   = var.example_lambda_arn
+    userPoolArn = var.user_pool_arn
   })
 }
 
@@ -20,7 +20,7 @@ resource "aws_api_gateway_deployment" "example" {
   ]
 
   rest_api_id = aws_api_gateway_rest_api.exampleapi.id
-  stage_name  = var.stage_name
+  stage_name  = "test"
 }
 
 resource "aws_lambda_permission" "exampleperm" {
