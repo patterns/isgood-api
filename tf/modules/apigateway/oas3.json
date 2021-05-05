@@ -19,24 +19,8 @@
           },
           "passthroughBehavior": "when_no_match",
           "type": "http_proxy"
-        },
-      "post": {
-        "x-amazon-apigateway-integration": {
-          "uri": ${echoUri},
-          "httpMethod": "POST",
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "passthroughBehavior": "when_no_match",
-          "type": "http_proxy"
         }
       }
     }
-
-
   }
-
-
 }
