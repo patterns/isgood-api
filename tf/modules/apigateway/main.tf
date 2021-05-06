@@ -7,11 +7,11 @@ resource "aws_api_gateway_rest_api" "exampleapi" {
     "REGIONAL"]
   }
 
-  body = templatefile("${path.module}/oas3.json", {
+  body = jsonencode(templatefile("${path.module}/oas3.json", {
     echoUri     = var.echo_uri
     lambdaUri   = var.example_lambda_arn
     userPoolArn = var.user_pool_arn
-  })
+  }))
 }
 
 resource "aws_api_gateway_deployment" "example" {
