@@ -13,7 +13,7 @@
 
 
         "x-amazon-apigateway-integration": {
-          "uri": ${lambdaUri},
+          "uri": ${echoUri},
 
           "httpMethod": "POST",
           "responses": {
@@ -22,7 +22,7 @@
             }
           },
           "passthroughBehavior": "when_no_match",
-          "type": "aws_proxy"
+          "type": "http_proxy"
         }
       }
     },
