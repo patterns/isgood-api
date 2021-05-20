@@ -1,9 +1,9 @@
 
 terraform {
   backend "remote" {
-    organization = "saveclimate"
+    organization = "massive-dynamic"
     workspaces {
-      name = "vault-demo"
+      name = "dev-sandbox"
     }
   }
 }
