@@ -8,3 +8,4 @@ variable "echo_uri" {
 variable "user_pool_arn" { type = string }
 variable "example_lambda_arn" { type = string }
 variable "example_lambda_name" { type = string }
+variable "region" { type = string }

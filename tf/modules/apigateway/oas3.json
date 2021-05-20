@@ -13,7 +13,8 @@
 
 
         "x-amazon-apigateway-integration": {
-          "uri": "${lambdaUri}",
+
+	  "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_identity_arn}/invocations",
 
           "httpMethod": "POST",
           "responses": {
