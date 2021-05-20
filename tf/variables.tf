@@ -11,5 +11,4 @@ variable "svcprefix" {
   description = "Prefix added to resource names"
 }
 
-variable "region" {}
 
