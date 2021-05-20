@@ -10,7 +10,11 @@
 
     "/lambda": {
       "post": {
-
+        "security": [
+          {
+              "ExampleRegisteredUsers": []
+          }
+        ],
 
         "x-amazon-apigateway-integration": {
 	  "uri": "${lambdaUri}",
@@ -56,5 +60,22 @@
       }
 
     }
+  },
+
+  "components": {
+  "securitySchemes": {
+    "ExampleRegisteredUsers": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "x-amazon-apigateway-authtype": "cognito_user_pools",
+      "x-amazon-apigateway-authorizer": {
+        "type": "cognito_user_pools",
+        "providerARNs": [
+          "${userPoolArn}"
+        ]
+      }
+    }
+  }
   }
 }
