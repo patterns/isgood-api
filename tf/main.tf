@@ -1,10 +1,8 @@
 
 
 
-
 module "cognito" {
   source = "./modules/cognito"
-
 }
 
 module "apigateway" {
@@ -13,8 +11,5 @@ module "apigateway" {
   user_pool_arn       = module.cognito.user_pool_arn
   example_lambda_arn  = aws_lambda_function.examplefunc.invoke_arn
   example_lambda_name = aws_lambda_function.examplefunc.function_name
-
-
-
 }
 
