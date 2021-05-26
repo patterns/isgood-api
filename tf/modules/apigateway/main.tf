@@ -8,9 +8,10 @@ resource "aws_api_gateway_rest_api" "exampleapi" {
   }
 
   body = templatefile("${path.module}/oas3.json", {
-    echoUri     = var.echo_uri
+    echo_uri    = var.echo_uri
+    foxtrot_uri = var.foxtrot_uri
     userPoolArn = var.user_pool_arn
-    lambdaUri   = var.example_lambda_arn
+    lambda_uri  = var.example_lambda_arn
   })
 }
 

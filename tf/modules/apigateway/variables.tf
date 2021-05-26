@@ -4,6 +4,7 @@ variable "echo_uri" {
   default     = "https://www.isgood.ai/"
   type        = string
 }
+variable "foxtrot_uri" {}
 
 variable "user_pool_arn" { type = string }
 variable "example_lambda_arn" { type = string }
