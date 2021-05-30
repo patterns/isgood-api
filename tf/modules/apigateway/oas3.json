@@ -3,7 +3,7 @@
   "info": {
     "title": "exampleapi",
     "description": "Example API",
-    "version": "0.1.8"
+    "version": "0.1.9"
   },
 
   "paths": {
@@ -17,7 +17,7 @@
         ],
 
         "x-amazon-apigateway-integration": {
-	  "uri": "${lambdaUri}",
+	  "uri": "${lambda_uri}",
           "httpMethod": "POST",
           "responses": {
             "default": {
@@ -38,7 +38,7 @@
           }
         ],
         "x-amazon-apigateway-integration": {
-          "uri": "${lambdaUri}",
+          "uri": "${lambda_uri}",
           "httpMethod": "POST",
           "responses": {
             "default": {
@@ -55,7 +55,7 @@
     "/echo": {
       "get": {
         "x-amazon-apigateway-integration": {
-          "uri": "${echoUri}",
+          "uri": "${echo_uri}",
           "httpMethod": "GET",
           "responses": {
             "default": {
@@ -69,7 +69,7 @@
 
       "post": {
         "x-amazon-apigateway-integration": {
-          "uri": "${echoUri}",
+          "uri": "${echo_uri}",
           "httpMethod": "POST",
           "responses": {
             "default": {
@@ -86,7 +86,7 @@
     "/echo/foxtrot": {
       "post": {
         "x-amazon-apigateway-integration": {
-          "uri": "${echoUri}",
+          "uri": "${foxtrot_uri}",
           "httpMethod": "POST",
           "responses": {
             "default": {
@@ -95,6 +95,22 @@
           },
           "passthroughBehavior": "when_no_match",
           "type": "http_proxy"
+        }
+      }
+    },
+
+    "/muck": {
+      "post": {
+        "x-amazon-apigateway-integration": {
+          "uri": "${lambda_uri}",
+          "httpMethod": "POST",
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "type": "aws_proxy"
         }
       }
     }
