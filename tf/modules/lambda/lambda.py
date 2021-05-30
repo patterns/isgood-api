@@ -33,18 +33,20 @@ def temporary_auth_bypass(body):
         # extract POST body and call admin_initiate_auth
         pool_id = os.environ.get('userpool_id')
         client_id = os.environ.get('appclient_id')
-        auth_params = {'USERNAME': body['username'], 'PASSWORD': body['password']}
+        if 'refresh' in body:
+            auth_params = {'REFRESH_TOKEN': body['refresh']}
+            auth_flow = 'REFRESH_TOKEN_AUTH'
+        else:
+            auth_params = {'USERNAME': body['username'], 'PASSWORD': body['password']}
+            auth_flow='ADMIN_NO_SRP_AUTH'
         try:
             user = sdk.admin_initiate_auth(
                   UserPoolId=pool_id,
                   ClientId=client_id,
-                  AuthFlow='ADMIN_NO_SRP_AUTH',
+                  AuthFlow=auth_flow,
                   AuthParameters=auth_params)
             authres = user.get('AuthenticationResult')
-            tokens = {'id_token': authres.get('IdToken'),
-                    'access_token': authres.get('AccessToken'),
-                    'refresh_token': authres.get('RefreshToken'),
-                    'token_type': authres.get('TokenType')}
+            tokens = {'token': authres.get('IdToken')}
             return tokens
 
         except sdk.exceptions.NotAuthorizedException as ex:
