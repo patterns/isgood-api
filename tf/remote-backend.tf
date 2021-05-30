@@ -1,9 +1,9 @@
 
 terraform {
   backend "remote" {
-    organization = "massive-dynamic"
+    organization = "isgood-infra"
     workspaces {
-      name = "dev-sandbox"
+      name = "ghactions-demo"
     }
   }
 }
