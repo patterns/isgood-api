@@ -3,7 +3,7 @@
   "info": {
     "title": "exampleapi",
     "description": "Example API",
-    "version": "0.1.8"
+    "version": "0.1.9"
   },
 
   "paths": {
@@ -95,6 +95,22 @@
           },
           "passthroughBehavior": "when_no_match",
           "type": "http_proxy"
+        }
+      }
+    },
+
+    "/muck": {
+      "post": {
+        "x-amazon-apigateway-integration": {
+          "uri": "${lambda_uri}",
+          "httpMethod": "POST",
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "type": "aws_proxy"
         }
       }
     }
