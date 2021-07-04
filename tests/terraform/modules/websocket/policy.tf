@@ -5,7 +5,7 @@ data "aws_iam_policy_document" "exampledynamopolicydoc" {
       "execute-api:Invoke",
       "execute-api:ManageConnections",
     ]
-    resources = ["${aws_apigatewayv2_api.examplewsapi.execution_arn}/*"]
+    resources = ["${aws_apigatewayv2_api.websocket.execution_arn}/*"]
     effect    = "Allow"
   }
 

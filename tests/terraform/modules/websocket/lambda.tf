@@ -20,7 +20,7 @@ resource "aws_lambda_permission" "examplewsperm" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.examplewslambda.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.examplewsapi.execution_arn}/*/*"
+  source_arn    = "${aws_apigatewayv2_api.websocket.execution_arn}/*/*"
 }
 
 resource "aws_iam_role" "examplewsrole" {

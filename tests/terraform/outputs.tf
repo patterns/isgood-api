@@ -1,8 +1,9 @@
-/*
-output "wsuri" {
-  value = "wss://${DemoWebsocket}.execute-api.${AWS_REGION}.amazon.com/${var.environment}"
-  description = "The endpoint used to connect to the demo service."
+
+
+output "baseURL" {
+  value       = module.websocket.base_url
+  description = "Endpoint for websocket service (needs stage appended for full path)."
 }
-*/
+
 
 

@@ -9,13 +9,12 @@ terraform {
 }
 
 
-
-
-module "examplews" {
-  source      = "./modules/examplews"
-  environment = var.environment
-  table_name  = var.table_name
-  table_arn   = aws_dynamodb_table.examplewsstatetable.arn
+module "websocket" {
+  source         = "./modules/websocket"
+  environment    = var.environment
+  webapp_api_key = var.webapp_api_key
+  table_name     = var.table_name
+  table_arn      = aws_dynamodb_table.examplewsstatetable.arn
 }
 
 
