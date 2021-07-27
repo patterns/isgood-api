@@ -1,21 +1,31 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "exampleapi",
-    "description": "Example API",
-    "version": "0.1.9"
+    "title": "rest",
+    "description": "REST API",
+    "version": "0.1.10"
   },
 
   "paths": {
+    "/lambda/x": {
+      "post": {
+        "security": [{"DemoRegisteredKeys": []}],
+        "x-amazon-apigateway-integration": {
+	  "uri": "${event_invoke_uri}",
+          "httpMethod": "POST",
+          "responses": {
+            "default": {
+              "statusCode": "202"
+            }
+          },
+          "passthroughBehavior": "when_no_match",
+          "type": "aws_proxy"
+        }
+      }
+    },
 
     "/lambda": {
       "post": {
-        "security": [
-          {
-              "ExampleRegisteredUsers": []
-          }
-        ],
-
         "x-amazon-apigateway-integration": {
 	  "uri": "${lambda_uri}",
           "httpMethod": "POST",
@@ -32,11 +42,6 @@
 
     "/lambda/mu": {
       "post": {
-        "security": [
-          {
-              "ExampleRegisteredUsers": []
-          }
-        ],
         "x-amazon-apigateway-integration": {
           "uri": "${lambda_uri}",
           "httpMethod": "POST",
@@ -50,7 +55,6 @@
         }
       }
     },
-
 
     "/echo": {
       "get": {
@@ -80,7 +84,6 @@
           "type": "http_proxy"
         }
       }
-
     },
 
     "/echo/foxtrot": {
@@ -97,39 +100,17 @@
           "type": "http_proxy"
         }
       }
-    },
-
-    "/muck": {
-      "post": {
-        "x-amazon-apigateway-integration": {
-          "uri": "${lambda_uri}",
-          "httpMethod": "POST",
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "passthroughBehavior": "when_no_match",
-          "type": "aws_proxy"
-        }
-      }
     }
   },
 
   "components": {
-  "securitySchemes": {
-    "ExampleRegisteredUsers": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header",
-      "x-amazon-apigateway-authtype": "cognito_user_pools",
-      "x-amazon-apigateway-authorizer": {
-        "type": "cognito_user_pools",
-        "providerARNs": [
-          "${userPoolArn}"
-        ]
-      }
+    "securitySchemes": {
+        "DemoRegisteredKeys": {
+          "type": "apiKey",
+          "name": "x-api-key",
+          "in": "header"
+        }
     }
   }
-  }
+
 }

@@ -1,14 +1,13 @@
-variable "indicationsfqdn" {
+variable "echo_fqdn" {
   description = "URL of echo test service"
-
 }
 
-variable "stagename" {
-  description = "API Gateway stage name and appears in baseURL"
+variable "stage_name" {
+  description = "API Gateway stage name and appears in base_url"
+  default     = "test"
 }
 
-variable "svcprefix" {
-  description = "Prefix added to resource names"
-}
-
+variable "client_id" {}
+variable "client_secret" {}
+variable "webapp_endpoint" {}
 

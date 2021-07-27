@@ -1,14 +1,15 @@
 
-variable "userpool_id" {}
-variable "appclient_id" {}
-variable "userpool_arn" {}
 
-variable "function_name" {
-  default = "minimal_lambda_function"
+
+variable "client_id" {
+  description = "client ID to send request to auth0"
+}
+variable "client_secret" {
+  description = "client secret to send request to auth0"
 }
 
-variable "handler" {
-  default = "lambda.handler"
+variable "webapp_endpoint" {
+  description = "known webapp exposes endpt to accept POST of result from DS/Brain process"
 }
 
 variable "runtime" {
