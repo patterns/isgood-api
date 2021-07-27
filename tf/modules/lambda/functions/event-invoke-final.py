@@ -74,7 +74,7 @@ def send_post_to_known_webconsumer(req):
 
         logger.info("## starting to send post...")
         logger.info(req)
-        return "placeholder send-post"
+        return "placeholder todo-post"
         #conn = http.client.HTTPSConnection(endpoint)
         #conn.request("POST", "", req['payload'], req['headers'])
         #res = conn.getresponse()
