@@ -54,7 +54,8 @@ def begin_auth_to_known_webconsumer():
         res = conn.getresponse()
         data = res.read()
 
-        token = data.decode("utf-8")
+        ##token = data.decode("utf-8")
+        token = json.loads(data)
         logger.info(token)
 
         return token
