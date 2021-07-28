@@ -1,12 +1,9 @@
-output "baseURL" {
-  value = module.apigateway.base_url
+output "base_url" {
+  value = module.rest.base_url
 }
 
-output "userPoolID" {
-  value = module.cognito.user_pool_id
-}
-
-output "userPoolClientID" {
-  value = module.cognito.user_pool_client_id
+output "demo_api_key" {
+  value     = module.rest.demo_api_key
+  sensitive = true
 }
 
