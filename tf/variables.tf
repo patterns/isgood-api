@@ -9,5 +9,6 @@ variable "stage_name" {
 
 variable "client_id" {}
 variable "client_secret" {}
-variable "webapp_endpoint" {}
+variable "webapp_host" {}
+variable "webapp_path" {}
 

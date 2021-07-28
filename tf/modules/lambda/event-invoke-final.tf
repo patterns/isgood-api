@@ -9,9 +9,10 @@ resource "aws_lambda_function" "event_invoke_final_lambda" {
 
   environment {
     variables = {
-      CLIENT_ID       = var.client_id
-      CLIENT_SECRET   = var.client_secret
-      WEBAPP_ENDPOINT = var.webapp_endpoint
+      CLIENT_ID     = var.client_id
+      CLIENT_SECRET = var.client_secret
+      WEBAPP_HOST   = var.webapp_host
+      WEBAPP_PATH   = var.webapp_path
     }
   }
 }

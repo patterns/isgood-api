@@ -2,10 +2,11 @@
 
 
 module "lambda" {
-  source          = "./modules/lambda"
-  client_id       = var.client_id
-  client_secret   = var.client_secret
-  webapp_endpoint = var.webapp_endpoint
+  source        = "./modules/lambda"
+  client_id     = var.client_id
+  client_secret = var.client_secret
+  webapp_host   = var.webapp_host
+  webapp_path   = var.webapp_path
 }
 
 module "rest" {
