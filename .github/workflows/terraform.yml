@@ -71,7 +71,7 @@ jobs:
 
       - name: Terraform Output
         id: base-url
-        run: terraform output -json baseURL
+        run: terraform output -json base_url
 
 
   infratest:
